@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import './App.css';
 
@@ -16,6 +17,12 @@ class App extends React.Component {
     console.log(q);
 
     this.setState({ q });
+
+    const url = `https://us1.locationiq.com/v1/search.php?key=pk.552756e6a306d3464c3971a5e2c69656&q=Cedar Rapids Iowa&format=json`;
+    const response = axios.get(url);
+    console.log(response);
+
+
   };
 
   render() {
