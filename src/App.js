@@ -53,7 +53,11 @@ class App extends React.Component {
           <>
             <h2>Search: {this.state.q}</h2>
             {this.state.location ?
+            <>
               <p>Display Name: {this.state.location.display_name}</p>
+              <p>Latitude: {this.state.location.lat}</p>
+              <p>Longitude: {this.state.location.lon}</p>
+            </>
             : <p>Loading...</p>
           }
           </>
