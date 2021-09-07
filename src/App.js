@@ -22,13 +22,11 @@ class App extends React.Component {
     const url = `https://us1.locationiq.com/v1/search.php`;
     const response = await axios.get(url, {
       params: {
-        key: 'pk.552756e6a306d3464c3971a5e2c69656',
+        key: process.env.REACT_APP_LOCATION_KEY,
         q,
         format: 'json',
       }
     });
-
-
 
     console.log(response);
 
