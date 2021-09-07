@@ -6,9 +6,10 @@ class App extends React.Component {
 
   state = {
     q: null,
+    location: null,
   };
 
-  handleSearch = event => {
+  handleSearch = async event => {
     event.preventDefault();
 
     let form = event.target;
@@ -16,21 +17,32 @@ class App extends React.Component {
     let q = input.value;
     console.log(q);
 
-    this.setState({ q });
+    this.setState({ q, location: null });
 
-    const url = `https://us1.locationiq.com/v1/search.php?key=pk.552756e6a306d3464c3971a5e2c69656&q=Cedar Rapids Iowa&format=json`;
-    const response = axios.get(url);
+    const url = `https://us1.locationiq.com/v1/search.php`;
+    const response = await axios.get(url, {
+      params: {
+        key: 'pk.552756e6a306d3464c3971a5e2c69656',
+        q,
+        format: 'json',
+      }
+    });
+
+
+
     console.log(response);
 
+    const location = response.data[0];
+    this.setState({ location });
 
   };
 
   render() {
     return (
       <div className="App">
-          <form onSubmit={this.handleSearch}>
+        <form onSubmit={this.handleSearch}>
           <label>
-            Search for a location: 
+            Search for a location:
             {' '}
             <input type="text" name="search" placeholder="location" />
           </label>
@@ -38,8 +50,15 @@ class App extends React.Component {
             <button type="submit">Explore!</button>
           </div>
         </form>
-        {this.state.q && 
-        <h2>Search: {this.state.q}</h2>
+
+        {this.state.q &&
+          <>
+            <h2>Search: {this.state.q}</h2>
+            {this.state.location ?
+              <p>Display Name: {this.state.location.display_name}</p>
+            : <p>Loading...</p>
+          }
+          </>
         }
       </div>
     );
