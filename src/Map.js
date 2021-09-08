@@ -1,19 +1,20 @@
-import axios from 'axios';
 import React from 'react';
-import Image from 'react-bootstrap/Image'
-import { Col, Row, Form } from 'react-bootstrap';
+
+const key = process.env.REACT_APP_LOCATION_KEY
+const staticMapUrl = 'https://maps.locationiq.com/v3/staticmap';
 
 class Map extends React.Component {
-
   render() {
+
+    let location = this.props.location;
+    let src = `${staticMapUrl}?key=${key}&center=${location.lat},${location.lon}&zoom=12`;
+
     return (
-      <container>
-        <Row>
-          <Col>
-            <Image width='300' src='https://dsznajder.gallerycdn.vsassets.io/extensions/dsznajder/es7-react-js-snippets/3.1.1/1615634123388/Microsoft.VisualStudio.Services.Icons.Default' roundedCircle />
-          </Col>
-        </Row>
-      </container>
+      <div id='map'>
+        <img src={src} 
+        alt={`Map of ${location.display_name}`} 
+        />
+      </div>
     )
   }
 }

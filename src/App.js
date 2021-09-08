@@ -58,16 +58,13 @@ class App extends React.Component {
                 <p>Display Name: {this.state.location.display_name}</p>
                 <p>Latitude: {this.state.location.lat}</p>
                 <p>Longitude: {this.state.location.lon}</p>
+                <Map location={this.state.location} />
               </>
               : <p>Loading...</p>}
           </>
         }
       </div>
-        <>
-          <div>
-            <Map />
-          </div>
-        </></>
+      </>
     );
   }
 }
