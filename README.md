@@ -13,7 +13,7 @@
 
 ### Lab 6
   
-  <img src="assets/lab06dataflow.png" alt="data flow imgage">
+  <img src="assets/lab06dataflow.png" alt="data flow image">
 
 ### Lab 7
 
