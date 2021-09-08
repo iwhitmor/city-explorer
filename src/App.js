@@ -60,8 +60,10 @@ class App extends React.Component {
                 <p>Longitude: {this.state.location.lon}</p>
               </>
               : <p>Loading...</p>}
-          </>}
-      </div><>
+          </>
+        }
+      </div>
+        <>
           <div>
             <Map />
           </div>
