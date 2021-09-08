@@ -12,7 +12,7 @@ class Map extends React.Component {
 
     return (
       <div id='map'>
-        <Image src={src} roundedCircle
+        <Image id='mapImage' src={src} roundedCircle
         alt={`Map of ${location.display_name}`} 
         />
       </div>

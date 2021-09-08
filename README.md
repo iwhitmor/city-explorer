@@ -11,6 +11,9 @@
 
 ## Architecture
 
+### Lab06
+  
+  <img src="assets/lab06dataflow.png" alt="data flow imgage">
 
 ## Change Log
 
