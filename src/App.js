@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import './App.css';
+import Map from './Map.js';
 
 class App extends React.Component {
 
@@ -37,7 +38,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <><div className="App">
         <form onSubmit={this.handleSearch}>
           <label>
             Search for a location:
@@ -53,16 +54,18 @@ class App extends React.Component {
           <>
             <h2>Search: {this.state.q}</h2>
             {this.state.location ?
-            <>
-              <p>Display Name: {this.state.location.display_name}</p>
-              <p>Latitude: {this.state.location.lat}</p>
-              <p>Longitude: {this.state.location.lon}</p>
-            </>
-            : <p>Loading...</p>
-          }
-          </>
-        }
-      </div>
+              <>
+                <p>Display Name: {this.state.location.display_name}</p>
+                <p>Latitude: {this.state.location.lat}</p>
+                <p>Longitude: {this.state.location.lon}</p>
+              </>
+              : <p>Loading...</p>}
+          </>}
+      </div><>
+          <div>
+            <Map />
+          </div>
+        </></>
     );
   }
 }
