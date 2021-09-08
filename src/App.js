@@ -39,13 +39,13 @@ class App extends React.Component {
         <Container as='main'>
           <div className="App">
             <Form onSubmit={this.handleSearch}>
-              <Form.Label>
-                Search for a location:
+              <Form.Label column="sm" lg={2}>
+                Search For a Location:
                 {' '}
-                <Form.Control type="text" name="search" placeholder="location" />
+                <Form.Control type="text" name="search" placeholder="Location" />
               </Form.Label>
               <div>
-                <Button variant="secondary" type="submit">Explore!</Button>
+                <Button variant="secondary" size="sm" type="submit">Explore!</Button>
               </div>
             </Form>
 
@@ -54,7 +54,7 @@ class App extends React.Component {
                 <h2>Search: {this.state.q}</h2>
                 {this.state.location ?
                   <>
-                    <p>Display Name: {this.state.location.display_name}</p>
+                    <p>{this.state.location.display_name}</p>
                     <p>Latitude: {this.state.location.lat}</p>
                     <p>Longitude: {this.state.location.lon}</p>
                     <Map location={this.state.location} />
