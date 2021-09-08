@@ -30,45 +30,40 @@ class App extends React.Component {
       }
     });
 
-    console.log(response);
-
     const location = response.data[0];
     this.setState({ location });
-
   };
 
   render() {
     return (
-      <>
-      <Container as='main'>
-      <div className="App">
-        <Form onSubmit={this.handleSearch}>
-          <Form.Label>
-            Search for a location:
-            {' '}
-            <Form.Control type="text" name="search" placeholder="location" />
-          </Form.Label>
-          <div>
-            <Button variant="secondary" type="submit">Explore!</Button>
-          </div>
-        </Form>
+        <Container as='main'>
+          <div className="App">
+            <Form onSubmit={this.handleSearch}>
+              <Form.Label>
+                Search for a location:
+                {' '}
+                <Form.Control type="text" name="search" placeholder="location" />
+              </Form.Label>
+              <div>
+                <Button variant="secondary" type="submit">Explore!</Button>
+              </div>
+            </Form>
 
-        {this.state.q &&
-          <>
-            <h2>Search: {this.state.q}</h2>
-            {this.state.location ?
+            {this.state.q &&
               <>
-                <p>Display Name: {this.state.location.display_name}</p>
-                <p>Latitude: {this.state.location.lat}</p>
-                <p>Longitude: {this.state.location.lon}</p>
-                <Map location={this.state.location} />
+                <h2>Search: {this.state.q}</h2>
+                {this.state.location ?
+                  <>
+                    <p>Display Name: {this.state.location.display_name}</p>
+                    <p>Latitude: {this.state.location.lat}</p>
+                    <p>Longitude: {this.state.location.lon}</p>
+                    <Map location={this.state.location} />
+                  </>
+                  : <p>Loading...</p>}
               </>
-              : <p>Loading...</p>}
-          </>
-        }
-      </div>
-      </Container>
-      </>
+            }
+          </div>
+        </Container>
     );
   }
 }
