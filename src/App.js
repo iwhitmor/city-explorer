@@ -4,6 +4,8 @@ import './App.css';
 import Map from './Map.js';
 import { Form, Container, Button } from 'react-bootstrap';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 class App extends React.Component {
 
   state = {
@@ -32,7 +34,14 @@ class App extends React.Component {
 
     const location = response.data[0];
     this.setState({ location });
+
+    this.getWeatherData();
   };
+
+getWeatherData = async () => {
+  let response = await axios.get(`${apiUrl}/weatherData)`);
+  console.log(response);
+}
 
   render() {
     return (
