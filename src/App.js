@@ -38,41 +38,55 @@ class App extends React.Component {
     this.getWeatherData();
   };
 
-getWeatherData = async () => {
-  let response = await axios.get(`${apiUrl}/weatherData)`);
-  console.log(response);
-}
+  getWeatherData = async () => {
+    let response = await axios.get(`${apiUrl}/weatherData`);
+    console.log('response from weather data', response);
+
+    this.setState({
+      weatherData: response.data
+    })
+    console.log(this.state.weatherData);
+  }
 
   render() {
     return (
-        <Container as='main'>
-          <div className="App">
-            <Form onSubmit={this.handleSearch}>
-              <Form.Label column="sm" lg={2}>
-                Search For a Location:
-                {' '}
-                <Form.Control type="text" name="search" placeholder="Location" />
-              </Form.Label>
-              <div>
-                <Button variant="secondary" size="sm" type="submit">Explore!</Button>
-              </div>
-            </Form>
-
-            {this.state.q &&
-              <>
-                <h2>Search: {this.state.q}</h2>
-                {this.state.location ?
-                  <>
-                    <p>{this.state.location.display_name}</p>
-                    <p>Latitude: {this.state.location.lat}</p>
-                    <p>Longitude: {this.state.location.lon}</p>
-                    <Map location={this.state.location} />
-                  </>
-                  : <p>Loading...</p>}
-              </>
+      <Container as='main'>
+        <div className="App">
+          <Form onSubmit={this.handleSearch}>
+            <Form.Label column="sm" lg={2}>
+              Search For a Location:
+              {' '}
+              <Form.Control type="text" name="search" placeholder="Location" />
+            </Form.Label>
+            <div>
+              <Button variant="secondary" size="sm" type="submit">Explore!</Button>
+            </div>
+          </Form>
+          <div>
+            {this.state.weatherData &&
+              <ul>
+                <li>
+                  {this.state.weatherData[0].lat}
+                </li>
+              </ul>
             }
           </div>
-        </Container>
+
+          {this.state.q &&
+            <>
+              <h2>Search: {this.state.q}</h2>
+              {this.state.location ?
+                <>
+                  <p>{this.state.location.display_name}</p>
+                  <p>Latitude: {this.state.location.lat}</p>
+                  <p>Longitude: {this.state.location.lon}</p>
+                  <Map location={this.state.location} />
+                </>
+                : <p>Loading...</p>}
+            </>
+          }
+        </div>
+      </Container>
     );
   }
 }
