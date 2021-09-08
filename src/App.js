@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import './App.css';
 import Map from './Map.js';
+import { Form, Container, Button } from 'react-bootstrap';
 
 class App extends React.Component {
 
@@ -38,17 +39,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <><div className="App">
-        <form onSubmit={this.handleSearch}>
-          <label>
+      <>
+      <Container as='main'>
+      <div className="App">
+        <Form onSubmit={this.handleSearch}>
+          <Form.Label>
             Search for a location:
             {' '}
-            <input type="text" name="search" placeholder="location" />
-          </label>
+            <Form.Control type="text" name="search" placeholder="location" />
+          </Form.Label>
           <div>
-            <button type="submit">Explore!</button>
+            <Button variant="secondary" type="submit">Explore!</Button>
           </div>
-        </form>
+        </Form>
 
         {this.state.q &&
           <>
@@ -64,6 +67,7 @@ class App extends React.Component {
           </>
         }
       </div>
+      </Container>
       </>
     );
   }
