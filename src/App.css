@@ -39,6 +39,8 @@
 
 main {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: rgb(126, 126, 126);
+  color: white;
 }
 
 #mapImage {

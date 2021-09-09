@@ -59,7 +59,7 @@ class App extends React.Component {
               <Form.Control type="text" name="search" placeholder="Location" />
             </Form.Label>
             <div>
-              <Button id="button" variant="secondary" size="sm" type="submit">Explore!</Button>
+              <Button id="button" variant="light" size="sm" type="submit">Explore!</Button>
             </div>
           </Form>
           <div>
