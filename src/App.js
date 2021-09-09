@@ -50,16 +50,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container as='main'>
+      <Container as="main">
         <div className="App">
           <Form onSubmit={this.handleSearch}>
-            <Form.Label column="sm" lg={2}>
+            <Form.Label id="formLabel" column="sm" lg={2}>
               Search For a Location:
               {' '}
               <Form.Control type="text" name="search" placeholder="Location" />
             </Form.Label>
             <div>
-              <Button variant="secondary" size="sm" type="submit">Explore!</Button>
+              <Button id="button" variant="secondary" size="sm" type="submit">Explore!</Button>
             </div>
           </Form>
           <div>

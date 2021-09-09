@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+#mapImage {
+  border: 10px solid black;
+  margin-top: 30px; 
+}
+
+#button {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
