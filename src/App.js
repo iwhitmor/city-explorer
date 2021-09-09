@@ -38,9 +38,14 @@ class App extends React.Component {
     this.getWeatherData();
   };
 
-  getWeatherData = async () => {
-    let response = await axios.get(`${apiUrl}/weatherData`);
-    console.log('response from weather data', response);
+  getWeatherData = async (location) => {
+    const response = await axios.get(`${apiUrl}/weatherData`, {
+      params: {
+        lat: this.state.location.lat,
+        lon: this.state.location.lon,
+      },
+    });
+    console.log(response);
 
     this.setState({
       weatherData: response.data
