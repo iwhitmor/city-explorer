@@ -37,6 +37,10 @@
   }
 }
 
+main {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 #mapImage {
   border: 5px solid rgb(255, 193, 77);
   margin-top: 30px;
