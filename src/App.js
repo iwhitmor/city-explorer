@@ -71,7 +71,7 @@ class App extends React.Component {
             {this.state.weatherData &&
               <ul>
                 <li>
-                  {this.state.weatherData.lat}
+                  {this.state.weatherData[0].description}
                 </li>
               </ul>
             }
