@@ -71,7 +71,13 @@ class App extends React.Component {
             {this.state.weatherData &&
               <ul>
                 <li>
-                  {this.state.weatherData[0].description}
+                  
+                  {this.state.weatherData.map(day => (
+                    <>
+                    <p>Date: {day.date}</p>
+                    <p>Description: {day.description}</p>
+                    </>
+    ))}  
                 </li>
               </ul>
             }
