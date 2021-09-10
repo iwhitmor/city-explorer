@@ -67,21 +67,7 @@ class App extends React.Component {
               <Button id="button" variant="light" size="sm" type="submit">Explore!</Button>
             </div>
           </Form>
-          <div>
-            {this.state.weatherData &&
-              <ul>
-                <li>
-                  
-                  {this.state.weatherData.map(day => (
-                    <>
-                    <p>Date: {day.date}</p>
-                    <p>Description: {day.description}</p>
-                    </>
-    ))}  
-                </li>
-              </ul>
-            }
-          </div>
+
 
           {this.state.q &&
             <>
@@ -96,6 +82,21 @@ class App extends React.Component {
                 : <p>Loading...</p>}
             </>
           }
+          <div>
+            {this.state.weatherData &&
+              <ul>
+                <li>
+
+                  {this.state.weatherData.map(day => (
+                    <>
+                      <p>Date: {day.date}</p>
+                      <p>Description: {day.description}</p>
+                    </>
+                  ))}
+                </li>
+              </ul>
+            }
+          </div>
         </div>
       </Container>
     );
