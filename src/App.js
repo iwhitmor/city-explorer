@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import './App.css';
 import Map from './Map.js';
-import { Form, Container, Button } from 'react-bootstrap';
+import { Form, Container, Button, ListGroup, Card } from 'react-bootstrap';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -67,40 +67,38 @@ class App extends React.Component {
               <Button id="button" variant="light" size="sm" type="submit">Explore!</Button>
             </div>
           </Form>
-
-
-          {this.state.q &&
-            <>
-              <h2>Search: {this.state.q}</h2>
-              {this.state.location ?
-                <>
-                  <p>{this.state.location.display_name}</p>
-                  <p>Latitude: {this.state.location.lat}</p>
-                  <p>Longitude: {this.state.location.lon}</p>
-                  <Map location={this.state.location} />
-                </>
-                : <p>Loading...</p>}
-            </>
-          }
-          <div>
-            {this.state.weatherData &&
-              <ul>
-                <li>
-
-                  {this.state.weatherData.map(day => (
-                    <>
-                      <p>Date: {day.date}</p>
-                      <p>Description: {day.description}</p>
-                    </>
-                  ))}
-                </li>
-              </ul>
-            }
-          </div>
         </div>
+
+
+        {this.state.q &&
+          <>
+            <h2>Search: {this.state.q}</h2>
+            {this.state.location ?
+              <>
+                <p>{this.state.location.display_name}</p>
+                <p>Latitude: {this.state.location.lat}</p>
+                <p>Longitude: {this.state.location.lon}</p>
+                <Map location={this.state.location} />
+              </>
+              : <p>Loading...</p>}
+          </>
+        }
+
+        {this.state.weatherData &&
+          <Card style={{ width: '18rem' }}>
+            <Card.Header>Weather Forecast</Card.Header>
+
+            {this.state.weatherData.map(day => (
+              <ListGroup>
+                <ListGroup.Item>Date: {day.date}</ListGroup.Item>
+                <ListGroup.Item>Description: {day.description}</ListGroup.Item>
+              </ListGroup>
+            ))}
+          </Card>
+          }
       </Container>
-    );
-  }
+    )
+}
 }
 
 export default App;
