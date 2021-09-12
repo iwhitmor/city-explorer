@@ -85,7 +85,7 @@ class App extends React.Component {
         }
 
         {this.state.weatherData &&
-          <Card style={{ width: '18rem' }}>
+          <Card bg="dark" style={{ width: '18rem' }}>
             <Card.Header>Weather Forecast</Card.Header>
 
             {this.state.weatherData.map(day => (
