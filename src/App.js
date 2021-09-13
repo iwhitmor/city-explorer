@@ -36,6 +36,7 @@ class App extends React.Component {
     this.setState({ location });
 
     this.getWeatherData(location);
+    this.getMovieData(q);
   };
 
   getWeatherData = async (location) => {
@@ -51,6 +52,15 @@ class App extends React.Component {
       weatherData: response.data
     })
     console.log(this.state.weatherData);
+  }
+
+  getMovieData = async (search) => {
+    const results = await axios.get(`${apiUrl}/movieData`, {
+      params: {
+        search,
+      }
+    })
+    console.log(results.data);
   }
 
   render() {
