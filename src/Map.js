@@ -11,10 +11,9 @@ class Map extends React.Component {
     let src = `${staticMapUrl}?key=${key}&center=${location.lat},${location.lon}&zoom=12`;
 
     return (
-      <div id='map'>
+      <div id='image-magnifier-container'>
         <Image id='mapImage' src={src} roundedCircle
-        alt={`Map of ${location.display_name}`} 
-        />
+        alt={`Map of ${location.display_name}`} />
       </div>
     )
   }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import './App.css';
 import Map from './Map.js';
-import { Form, Container, Button } from 'react-bootstrap';
+import { Form, Container, Button, ListGroup, Card } from 'react-bootstrap';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -35,12 +35,18 @@ class App extends React.Component {
     const location = response.data[0];
     this.setState({ location });
 
-    this.getWeatherData();
+    this.getWeatherData(location);
+    this.getMovieData(q);
   };
 
-  getWeatherData = async () => {
-    let response = await axios.get(`${apiUrl}/weatherData`);
-    console.log('response from weather data', response);
+  getWeatherData = async (location) => {
+    const response = await axios.get(`${apiUrl}/weatherData`, {
+      params: {
+        lat: location.lat,
+        lon: location.lon,
+      },
+    });
+    console.log(response);
 
     this.setState({
       weatherData: response.data
@@ -48,47 +54,61 @@ class App extends React.Component {
     console.log(this.state.weatherData);
   }
 
+  getMovieData = async (search) => {
+    const results = await axios.get(`${apiUrl}/movieData`, {
+      params: {
+        search,
+      }
+    })
+    console.log(results.data);
+  }
+
   render() {
     return (
-      <Container as='main'>
+      <Container as="main">
         <div className="App">
           <Form onSubmit={this.handleSearch}>
-            <Form.Label column="sm" lg={2}>
+            <Form.Label id="formLabel" column="sm" lg={2}>
               Search For a Location:
               {' '}
               <Form.Control type="text" name="search" placeholder="Location" />
             </Form.Label>
             <div>
-              <Button variant="secondary" size="sm" type="submit">Explore!</Button>
+              <Button id="button" variant="light" size="sm" type="submit">Explore!</Button>
             </div>
           </Form>
-          <div>
-            {this.state.weatherData &&
-              <ul>
-                <li>
-                  {this.state.weatherData[0].lat}
-                </li>
-              </ul>
-            }
-          </div>
-
-          {this.state.q &&
-            <>
-              <h2>Search: {this.state.q}</h2>
-              {this.state.location ?
-                <>
-                  <p>{this.state.location.display_name}</p>
-                  <p>Latitude: {this.state.location.lat}</p>
-                  <p>Longitude: {this.state.location.lon}</p>
-                  <Map location={this.state.location} />
-                </>
-                : <p>Loading...</p>}
-            </>
-          }
         </div>
+
+
+        {this.state.q &&
+          <>
+            <h2>Search: {this.state.q}</h2>
+            {this.state.location ?
+              <>
+                <p>{this.state.location.display_name}</p>
+                <p>Latitude: {this.state.location.lat}</p>
+                <p>Longitude: {this.state.location.lon}</p>
+                <Map location={this.state.location} />
+              </>
+              : <p>Loading...</p>}
+          </>
+        }
+
+        {this.state.weatherData &&
+          <Card bg="dark" style={{ width: '18rem' }}>
+            <Card.Header>Weather Forecast</Card.Header>
+
+            {this.state.weatherData.map(day => (
+              <ListGroup>
+                <ListGroup.Item>Date: {day.date}</ListGroup.Item>
+                <ListGroup.Item>Description: {day.description}</ListGroup.Item>
+              </ListGroup>
+            ))}
+          </Card>
+          }
       </Container>
-    );
-  }
+    )
+}
 }
 
 export default App;
